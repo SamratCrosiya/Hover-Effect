@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Reel Effects Clone</title>
+    <!-- FontAwesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* --- GLOBAL LAYOUT --- */
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            padding: 50px 20px;
+            gap: 60px;
+        }
+
+        h2 {
+            font-weight: 400;
+            color: #aaa;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Container to frame each demo nicely */
+        .demo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03); /* Subtle glass background */
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        /* =================================================================
+           EFFECT 1: 3D CHARACTER CARDS
+           ================================================================= */
+        :root {
+            --card-height: 300px;
+            --card-width: calc(var(--card-height) / 1.5);
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: var(--card-width);
+            height: var(--card-height);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 0 36px;
+            perspective: 2500px;
+            cursor: pointer;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px; /* Slight rounded corners */
+        }
+
+        .wrapper {
+            transition: all 0.5s;
+            position: absolute;
+            width: 100%;
+            height: 100%; /* Ensure full height */
+            z-index: -1;
+            border-radius: 10px;
+            overflow: hidden; /* Clips the image radius */
+        }
+
+        /* The 3D Tilt Effect on Hover */
+        .card:hover .wrapper {
+            transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+            box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+        }
+
+        .wrapper::before,
+        .wrapper::after {
+            content: "";
+            opacity: 0;
+            width: 100%;
+            height: 80px;
+            transition: all 0.5s;
+            position: absolute;
+            left: 0;
+        }
+        
+        .wrapper::before {
+            top: 0;
+            height: 100%;
+            background-image: linear-gradient(to top, transparent 46%, rgba(12, 13, 19, 0.5) 68%, rgba(12, 13, 19) 97%);
+            z-index: 1;
+        }
+        
+        .wrapper::after {
+            bottom: 0;
+            opacity: 1;
+            background-image: linear-gradient(to bottom, transparent 46%, rgba(12, 13, 19, 0.5) 68%, rgba(12, 13, 19) 97%);
+        }
+
+        .card:hover .wrapper::before,
+        .wrapper::after {
+            opacity: 1;
+        }
+
+        .card:hover .wrapper::after {
+            height: 120px;
+        }
+
+        .title {
+            width: 100%;
+            transition: transform 0.5s;
+            position: absolute;
+            bottom: 10px; 
+            text-align: center;
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .title img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card:hover .title {
+            transform: translate3d(0%, -50px, 100px);
+        }
+
+        .character {
+            width: 100%; 
+            opacity: 0;
+            transition: all 0.5s;
+            position: absolute;
+            z-index: -1;
+            bottom: 0; 
+        }
+
+        .card:hover .character {
+            opacity: 1;
+            transform: translate3d(0%, -30%, 100px);
+            z-index: 10;
+        }
+
+        /* =================================================================
+           EFFECT 2: GLOWING "GPT" BUTTON (Centered Alignment Fix)
+           ================================================================= */
+        .gpt-button {
+            position: relative;
+            padding: 12px 35px;
+            background: #101010;
+            font-size: 17px;
+            font-weight: 500;
+            color: #e2e2e2;
+            border: 1px solid #333;
+            border-radius: 12px;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            align-items: center; /* Vertical Center */
+            justify-content: center; /* Horizontal Center */
+            gap: 12px;
+        }
+
+        .gpt-button .icon-box {
+            width: 28px;
+            height: 28px;
+            background: #00A67E; 
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .gpt-button:hover {
+            border-color: #00A67E;
+            box-shadow: 0 0 20px rgba(0, 166, 126, 0.4);
+            transform: scale(1.02);
+        }
+
+        .gpt-button:hover span {
+            color: white;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        /* =================================================================
+           EFFECT 3: LOGOUT BUTTON (Absolute Center Fix)
+           ================================================================= */
+        .Btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition-duration: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+            background-color: rgb(255, 65, 65);
+        }
+
+        .sign {
+            width: 100%;
+            height: 100%; /* Ensure full height for centering */
+            transition-duration: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sign svg {
+            width: 18px;
+        }
+
+        .sign svg path {
+            fill: white;
+        }
+
+        .text {
+            position: absolute;
+            right: 0%;
+            top: 50%; /* KEY FIX: Center vertically */
+            transform: translateY(-50%); /* KEY FIX: Adjust for exact center */
+            width: 0%;
+            opacity: 0;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            transition-duration: 0.3s;
+            white-space: nowrap; /* Prevent wrapping */
+        }
+
+        .Btn:hover {
+            width: 125px;
+            border-radius: 40px;
+            transition-duration: 0.3s;
+        }
+
+        .Btn:hover .sign {
+            width: 30%;
+            transition-duration: 0.3s;
+            padding-left: 15px;
+        }
+
+        .Btn:hover .text {
+            opacity: 1;
+            width: 70%;
+            transition-duration: 0.3s;
+            padding-right: 15px; /* Adds spacing from right edge */
+        }
+
+        .Btn:active {
+            transform: translate(2px, 2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SECTION 1 -->
+    <div class="demo-container">
+        <h2>1. The "Pop-Out" Card Effect</h2>
+        <div class="cards-wrapper">
+            <div class="card">
+                <div class="wrapper">
+                    <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image" alt="Background">
+                </div>
+                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="title" alt="Dark Rider Title">
+                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character" alt="Character">
+            </div>
+
+            <div class="card">
+                <div class="wrapper">
+                    <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image" alt="Background">
+                </div>
+                <img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title" alt="Force Mage Title">
+                <img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character" alt="Character">
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="demo-container">
+        <h2>2. Glowing Border Button</h2>
+        <button class="gpt-button">
+            <div class="icon-box">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <span>Powered by GPT-OMNI</span>
+        </button>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="demo-container">
+        <h2>3. Expanding Logout Button</h2>
+        <button class="Btn">
+            <div class="sign">
+                <svg viewBox="0 0 512 512">
+                    <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                </svg>
+            </div>
+            <div class="text">Logout</div>
+        </button>
+    </div>
+
+</body>
+</html>
