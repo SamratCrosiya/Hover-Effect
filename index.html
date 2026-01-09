@@ -329,6 +329,429 @@
             <div class="text">Logout</div>
         </button>
     </div>
+<div class="card card-goku">
+    <div class="hud-ring" style="border-color: #f1c40f; border-width: 2px; filter: drop-shadow(0 0 10px #f1c40f);"></div>
+    
+    <div class="wrapper" style="border-color: #f1c40f; box-shadow: 0 0 20px rgba(241, 196, 15, 0.2);">
+        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1000" class="cover-image" style="filter: sepia(0.5) contrast(1.2);">
+    </div>
+
+    <h3 class="card-title">KAMI-LEVEL</h3>
+
+    <img src="https://www.pngmart.com/files/2/Goku-PNG-Photos.png" class="character goku-img">
+
+    <style>
+        .card-goku:hover .goku-img {
+            filter: drop-shadow(0 0 15px #f1c40f) brightness(1.1);
+            animation: ultra-instinct 0.1s infinite;
+        }
+
+        /* Subtle shake effect to simulate power */
+        @keyframes ultra-instinct {
+            0% { transform: translate3d(0%, -30%, 150px) rotate(0deg); }
+            25% { transform: translate3d(1px, -30.5%, 150px) rotate(0.2deg); }
+            75% { transform: translate3d(-1px, -29.5%, 150px) rotate(-0.2deg); }
+            100% { transform: translate3d(0%, -30%, 150px) rotate(0deg); }
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 25px;
+            z-index: 15;
+            color: #f1c40f;
+            font-weight: 900;
+            text-shadow: 0 0 10px black;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .card-goku:hover .card-title {
+            opacity: 1;
+            transform: translate3d(0%, -45px, 120px);
+        }
+    </style>
+</div>
+    <style>
+        /* --- 1. AMBIENT MESH BACKGROUND --- */
+        body {
+            background-color: #050505;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 65, 108, 0.1) 0px, transparent 50%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 60px 20px;
+            gap: 60px;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. SHIMMERING HEADERS --- */
+        h2 {
+            font-weight: 800;
+            background: linear-gradient(90deg, #555, #fff, #555);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+            letter-spacing: 5px;
+            font-size: 0.75rem;
+            margin-bottom: 50px;
+        }
+
+        @keyframes shimmer {
+            to { background-position: 200% center; }
+        }
+
+        /* --- 3. FLOATING GLASS CONTAINER --- */
+        .demo-container {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 40px;
+            padding: 60px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* --- 4. THE UNTOUCHED 3D POP EFFECT --- */
+        :root {
+            --card-height: 300px;
+            --card-width: calc(var(--card-height) / 1.5);
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            width: var(--card-width);
+            height: var(--card-height);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            perspective: 2500px;
+            cursor: pointer;
+        }
+
+        .wrapper {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover .wrapper {
+            transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+            box-shadow: 0 50px 50px -10px rgba(0, 0, 0, 0.8);
+            border-color: #00d2ff;
+        }
+
+        .cover-image { width: 100%; height: 100%; object-fit: cover; }
+
+        .character {
+            width: 100%;
+            opacity: 0;
+            transition: all 0.5s ease-out;
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .card:hover .character {
+            opacity: 1;
+            transform: translate3d(0%, -35%, 120px); /* Enhanced jump */
+        }
+
+        .title {
+            width: 100%;
+            transition: transform 0.5s;
+            position: absolute;
+            bottom: 20px;
+            z-index: 11;
+        }
+
+        .card:hover .title {
+            transform: translate3d(0%, -50px, 100px);
+        }
+
+        /* --- 5. NEON GLOW BUTTONS --- */
+        .gpt-button {
+            position: relative;
+            background: #000;
+            color: #fff;
+            padding: 18px 45px;
+            border-radius: 100px;
+            border: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            z-index: 1;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Animated border for the button */
+        .gpt-button::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #00d2ff, #ff416c, #00d2ff);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 100px;
+            filter: blur(8px);
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .gpt-button:hover::before {
+            opacity: 1;
+            animation: neon 8s linear infinite;
+        }
+
+        @keyframes neon {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gpt-button i {
+            color: #00d2ff;
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="demo-container">
+        <h2>QUANTUM RENDER ENGINE // 01</h2>
+        <div class="cards-wrapper">
+            
+            <div class="card">
+                <div class="wrapper">
+                    <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-cover.jpg" class="cover-image">
+                </div>
+                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-title.png" class="title">
+                <img src="https://ggayane.github.io/css-experiments/cards/dark_rider-character.webp" class="character">
+            </div>
+
+            <div class="card">
+                <div class="wrapper">
+                    <img src="https://ggayane.github.io/css-experiments/cards/force_mage-cover.jpg" class="cover-image">
+                </div>
+                <img src="https://ggayane.github.io/css-experiments/cards/force_mage-title.png" class="title">
+                <img src="https://ggayane.github.io/css-experiments/cards/force_mage-character.webp" class="character">
+            </div>
+
+        </div>
+    </div>
+
+    <div class="demo-container" style="animation-delay: -3s;">
+        <h2>NEURAL COMMAND CENTER // 02</h2>
+        <button class="gpt-button">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <span>SYNC DATA TO CLOUD</span>
+        </button>
+    </div>
+    <style>
+        /* --- 1. THE CYBER-ATMOSPHERE --- */
+        body {
+            background-color: #020205;
+            color: white;
+            font-family: 'Orbitron', sans-serif; /* Futuristic Font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+            overflow-x: hidden;
+        }
+
+        /* Particle Rain Animation */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 210, 255, 0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0, 210, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            from { background-position: 0 0; }
+            to { background-position: 50px 50px; }
+        }
+
+        /* --- 2. CARD HUD DECORATIONS --- */
+        .card::before {
+            content: "[ SCANNING... ]";
+            position: absolute;
+            top: -30px;
+            font-size: 0.6rem;
+            color: #00d2ff;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            50% { opacity: 0.3; }
+        }
+
+        /* --- 3. THE 3D POP ENGINE (SAME MECHANICS) --- */
+        :root {
+            --card-height: 380px;
+            --card-width: calc(var(--card-height) / 1.4);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .card {
+            width: var(--card-width);
+            height: var(--card-height);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            perspective: 2500px;
+            margin: 0 auto;
+        }
+
+        .wrapper {
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+            position: absolute;
+            width: 100%; height: 100%;
+            z-index: -1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+        }
+
+        .card:hover .wrapper {
+            transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+            box-shadow: 0 40px 60px -10px rgba(0, 0, 0, 0.9);
+            border-color: #00d2ff;
+        }
+
+        .character {
+            width: 100%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            pointer-events: none;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+        }
+
+        .card:hover .character {
+            opacity: 1;
+            transform: translate3d(0%, -30%, 150px);
+        }
+
+        /* --- 4. ADDED ANIMATION: FLOATING HUD RINGS --- */
+        .hud-ring {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border: 1px dashed rgba(0, 210, 255, 0.2);
+            border-radius: 50%;
+            top: -10%; left: -10%;
+            z-index: -2;
+            opacity: 0;
+            transition: 0.5s;
+            animation: rotate 10s linear infinite;
+        }
+
+        .card:hover .hud-ring {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cover-image { width: 100%; height: 100%; object-fit: cover; }
+
+    </style>
+</head>
+<body>
+
+    <h1 style="letter-spacing: 15px; color: #00d2ff; text-shadow: 0 0 20px #00d2ff; margin-bottom: 80px;">ARCHIVE.V2</h1>
+
+    <div class="cards-grid">
+        
+        <div class="card">
+            <div class="hud-ring"></div>
+            <div class="wrapper">
+                <img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1000" class="cover-image">
+            </div>
+            <h3 style="position:absolute; bottom:20px; z-index:11; letter-spacing:5px;">PHANTOM</h3>
+            <img src="https://www.pngmart.com/files/13/Cyberpunk-2077-Johnny-Silverhand-PNG-Transparent.png" class="character">
+        </div>
+
+        <div class="card">
+            <div class="hud-ring" style="border-color: #f1c40f;"></div>
+            <div class="wrapper" style="border-color: rgba(241, 196, 15, 0.3);">
+                <img src="https://wallpapercave.com/wp/wp4044820.jpg" class="cover-image">
+            </div>
+            <h3 style="position:absolute; bottom:20px; z-index:11; color: #f1c40f;">LEGACY</h3>
+            <img src="https://www.pngmart.com/files/2/Goku-PNG-Photos.png" class="character">
+        </div>
+
+        <div class="card">
+            <div class="hud-ring" style="border-color: #ff4b2b;"></div>
+            <div class="wrapper" style="border-color: rgba(255, 75, 43, 0.3);">
+                <img src="https://images.unsplash.com/photo-1518112391480-98fc199bc87a?q=80&w=1000" class="cover-image">
+            </div>
+            <h3 style="position:absolute; bottom:20px; z-index:11; color: #ff4b2b;">SHINOBI</h3>
+            <img src="https://www.pngmart.com/files/13/Naruto-Transparent-PNG.png" class="character">
+        </div>
+
+    </div>
+
 
 </body>
 </html>
