@@ -52,6 +52,18 @@
 - [👨‍💻 About Creator](#-about-creator)
 
 ---
+Deployed DevOps Live Project using Jenkins CI/CD Pipeline with GitHub integration  
+## 🛠️ Infrastructure & Tools
+* **CI/CD:** Jenkins (LTS)
+* **Containerization:** Docker
+* **Cloud:** AWS EC2 (Ubuntu 24.04)
+* **Web Server:** Nginx (Alpine)
+* **Source Control:** GitHub
+
+
+
+
+
 
 ## 🎯 Overview
 
